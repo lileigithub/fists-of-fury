@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://cwaupxn38ko74"]
+
+[ext_resource type="PackedScene" uid="uid://cg7twy1yrw537" path="res://scenes/stage/stage.tscn" id="1_3q3ku"]
+[ext_resource type="Script" uid="uid://bfpumhoub6wa6" path="res://scenes/word.gd" id="1_5kvxf"]
+[ext_resource type="PackedScene" uid="uid://dch66uy0xdey4" path="res://scenes/characters/player.tscn" id="2_vl1uy"]
+[ext_resource type="PackedScene" uid="uid://dcu81nh686g4v" path="res://scenes/props/barrel.tscn" id="4_1amgx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5kvxf"]
+size = Vector2(6, 64)
+
+[node name="Word" type="Node2D" unique_id=1074959100]
+script = ExtResource("1_5kvxf")
+
+[node name="Stage" parent="." unique_id=1337883495 instance=ExtResource("1_3q3ku")]
+
+[node name="Camera" type="Camera2D" parent="." unique_id=701829844]
+position = Vector2(50, 32)
+
+[node name="invisibleWalls" type="Node2D" parent="Camera" unique_id=2007822293]
+position = Vector2(-50, -32)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Camera/invisibleWalls" unique_id=104566246]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera/invisibleWalls/StaticBody2D" unique_id=774640483]
+position = Vector2(-3, 32)
+shape = SubResource("RectangleShape2D_5kvxf")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Camera/invisibleWalls" unique_id=461509918]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera/invisibleWalls/StaticBody2D2" unique_id=58132512]
+position = Vector2(103, 32)
+shape = SubResource("RectangleShape2D_5kvxf")
+
+[node name="ActorsContainer" type="Node2D" parent="." unique_id=628296364]
+y_sort_enabled = true
+
+[node name="Player" parent="ActorsContainer" unique_id=362669986 instance=ExtResource("2_vl1uy")]
+position = Vector2(34, 50)
+
+[node name="barrel" parent="ActorsContainer" unique_id=369214795 instance=ExtResource("4_1amgx")]
+position = Vector2(60, 52)

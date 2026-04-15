@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://dcu81nh686g4v"]
+
+[ext_resource type="Texture2D" uid="uid://b6b1e8h3d0rgl" path="res://assets/art/props/barrel.png" id="1_i1o76"]
+[ext_resource type="Script" uid="uid://blqt3upmpnbcg" path="res://scenes/props/barrel.gd" id="1_ikkq8"]
+[ext_resource type="PackedScene" uid="uid://bqmk5owdw21md" path="res://scenes/collisions/demage_receiver.tscn" id="2_mvosc"]
+[ext_resource type="Script" uid="uid://cvhbch446e1u5" path="res://scenes/collisions/demage_receiver.gd" id="3_nhfpi"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i1o76"]
+radius = 2.0
+height = 14.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nhfpi"]
+size = Vector2(11, 10)
+
+[node name="barrel" type="StaticBody2D" unique_id=678951034]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_ikkq8")
+knockback_intensity = 50.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=144089623]
+texture = ExtResource("1_i1o76")
+centered = false
+offset = Vector2(-16, -32)
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=108232174]
+position = Vector2(0, -3)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_i1o76")
+
+[node name="DemageReceiver" parent="." unique_id=2120513279 instance=ExtResource("2_mvosc")]
+collision_layer = 64
+script = ExtResource("3_nhfpi")
+
+[node name="CollisionShape2D" parent="DemageReceiver" index="0" unique_id=375474339]
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_nhfpi")
+
+[editable path="DemageReceiver"]

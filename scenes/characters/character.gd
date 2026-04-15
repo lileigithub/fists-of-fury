@@ -105,7 +105,5 @@ func handle_air_time(delta:float):
 				speed_scale = 2
 		characterSprite.position = Vector2.UP * height
 		
-	
-		
 		
 		

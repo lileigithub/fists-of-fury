@@ -22,7 +22,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("DemageEmitter:monitoring")
+tracks/1/path = NodePath("DamageEmitter:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -99,7 +99,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("DemageEmitter:monitoring")
+tracks/2/path = NodePath("DamageEmitter:monitoring")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -142,7 +142,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("DemageEmitter:monitoring")
+tracks/2/path = NodePath("DamageEmitter:monitoring")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -185,11 +185,11 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("DemageEmitter:monitoring")
+tracks/2/path = NodePath("DamageEmitter:monitoring")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.0009999999, 0.15),
+"times": PackedFloat32Array(0, 0.15),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -266,7 +266,6 @@ size = Vector2(10, 12)
 collision_layer = 2
 collision_mask = 9
 script = ExtResource("2_dyp2m")
-demage = 4
 max_health = 30
 speed = 35.0
 jump_intensity = 150.0
@@ -282,19 +281,19 @@ vframes = 10
 libraries/ = SubResource("AnimationLibrary_dyp2m")
 autoplay = &"idle"
 
-[node name="DemageEmitter" parent="." index="4" unique_id=1169438908]
+[node name="DamageEmitter" parent="." index="4" unique_id=1169438908]
 position = Vector2(0, -12)
 collision_mask = 96
 
-[node name="CollisionShape2D" parent="DemageEmitter" index="0" unique_id=1344649673]
+[node name="CollisionShape2D" parent="DamageEmitter" index="0" unique_id=1344649673]
 position = Vector2(10, 0)
 shape = SubResource("RectangleShape2D_76oj4")
 debug_color = Color(0.82945144, 0.3818674, 0.22446257, 0.41960785)
 
-[node name="DemageReceiver" parent="." index="5" unique_id=2120513279]
+[node name="DamageReceiver" parent="." index="5" unique_id=2120513279]
 collision_layer = 16
 
-[node name="CollisionShape2D" parent="DemageReceiver" index="0" unique_id=375474339]
+[node name="CollisionShape2D" parent="DamageReceiver" index="0" unique_id=375474339]
 position = Vector2(0, -19)
 shape = SubResource("RectangleShape2D_dyp2m")
 
@@ -312,5 +311,5 @@ position = Vector2(-18, 3)
 [node name="EnemySlot4" parent="EnemySlots" index="3" unique_id=1844792114 instance=ExtResource("4_dyp2m")]
 position = Vector2(-18, -3)
 
-[editable path="DemageEmitter"]
-[editable path="DemageReceiver"]
+[editable path="DamageEmitter"]
+[editable path="DamageReceiver"]

@@ -2,8 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b6b1e8h3d0rgl" path="res://assets/art/props/barrel.png" id="1_i1o76"]
 [ext_resource type="Script" uid="uid://blqt3upmpnbcg" path="res://scenes/props/barrel.gd" id="1_ikkq8"]
-[ext_resource type="PackedScene" uid="uid://bqmk5owdw21md" path="res://scenes/collisions/demage_receiver.tscn" id="2_mvosc"]
-[ext_resource type="Script" uid="uid://cvhbch446e1u5" path="res://scenes/collisions/demage_receiver.gd" id="3_nhfpi"]
+[ext_resource type="PackedScene" uid="uid://bqmk5owdw21md" path="res://scenes/collisions/damage_receiver.tscn" id="2_mvosc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i1o76"]
 radius = 2.0
@@ -31,7 +30,6 @@ shape = SubResource("CapsuleShape2D_i1o76")
 
 [node name="DemageReceiver" parent="." unique_id=2120513279 instance=ExtResource("2_mvosc")]
 collision_layer = 64
-script = ExtResource("3_nhfpi")
 
 [node name="CollisionShape2D" parent="DemageReceiver" index="0" unique_id=375474339]
 position = Vector2(0, -15)

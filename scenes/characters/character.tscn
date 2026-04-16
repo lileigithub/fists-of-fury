@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://0gsovsqhhm4a" path="res://scenes/characters/character.gd" id="1_1bdar"]
 [ext_resource type="Texture2D" uid="uid://d0jo43xa8ljw5" path="res://assets/art/characters/shadow.png" id="1_x31xa"]
-[ext_resource type="PackedScene" uid="uid://bbv3gwe0yqcxw" path="res://scenes/collisions/demage_emitter.tscn" id="3_e22cc"]
-[ext_resource type="PackedScene" uid="uid://bqmk5owdw21md" path="res://scenes/collisions/demage_receiver.tscn" id="4_2qjml"]
+[ext_resource type="PackedScene" uid="uid://bbv3gwe0yqcxw" path="res://scenes/collisions/damage_emitter.tscn" id="3_e22cc"]
+[ext_resource type="PackedScene" uid="uid://bqmk5owdw21md" path="res://scenes/collisions/damage_receiver.tscn" id="4_2qjml"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1bdar"]
 radius = 2.0
@@ -30,9 +30,9 @@ shape = SubResource("CapsuleShape2D_1bdar")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=873326985]
 
-[node name="DemageEmitter" parent="." unique_id=1169438908 instance=ExtResource("3_e22cc")]
+[node name="DamageEmitter" parent="." unique_id=1169438908 instance=ExtResource("3_e22cc")]
 
-[node name="DemageReceiver" parent="." unique_id=2120513279 instance=ExtResource("4_2qjml")]
+[node name="DamageReceiver" parent="." unique_id=2120513279 instance=ExtResource("4_2qjml")]
 
-[editable path="DemageEmitter"]
-[editable path="DemageReceiver"]
+[editable path="DamageEmitter"]
+[editable path="DamageReceiver"]

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bbv3gwe0yqcxw"]
 
-[node name="DemageEmitter" type="Area2D" unique_id=1169438908]
+[node name="DamageEmitter" type="Area2D" unique_id=1169438908]
 collision_layer = 0
 collision_mask = 0
 monitoring = false

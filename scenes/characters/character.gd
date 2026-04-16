@@ -4,8 +4,8 @@ const GRAVITY = 600.0
 
 @onready var animationPlayer := $AnimationPlayer
 @onready var characterSprite := $CharacterSprite2D
-@onready var damageEmitter := $damageEmitter
-@onready var damageReceiver = $damageReceiver
+@onready var damageEmitter := $DamageEmitter
+@onready var damageReceiver = $DamageReceiver
 
 @export var damage:int
 @export var max_health:int

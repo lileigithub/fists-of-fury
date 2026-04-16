@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://dch66uy0xdey4"]
 
 [ext_resource type="PackedScene" uid="uid://cxsrlaqrmkapp" path="res://scenes/characters/character.tscn" id="1_rp718"]
+[ext_resource type="Script" uid="uid://cxb4gk14h7hyk" path="res://scenes/characters/player.gd" id="2_dyp2m"]
 [ext_resource type="Texture2D" uid="uid://cxg8d6qg72u72" path="res://assets/art/characters/player.png" id="2_yewv4"]
-[ext_resource type="PackedScene" uid="uid://bbv3gwe0yqcxw" path="res://scenes/collisions/demage_emitter.tscn" id="3_76oj4"]
+[ext_resource type="PackedScene" uid="uid://cui13t03w6pty" path="res://scenes/characters/enemy_slot.tscn" id="4_dyp2m"]
 
 [sub_resource type="Animation" id="Animation_yewv4"]
 length = 0.001
@@ -178,7 +179,7 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"on_punch_completed"
+"method": &"on_action_completed"
 }]
 }
 tracks/2/type = "value"
@@ -258,11 +259,15 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_76oj4"]
 size = Vector2(10, 6)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dyp2m"]
+size = Vector2(10, 12)
+
 [node name="Player" unique_id=362669986 instance=ExtResource("1_rp718")]
 collision_layer = 2
-collision_mask = 13
+collision_mask = 9
+script = ExtResource("2_dyp2m")
 demage = 4
-health = 30
+max_health = 30
 speed = 35.0
 jump_intensity = 150.0
 
@@ -277,7 +282,7 @@ vframes = 10
 libraries/ = SubResource("AnimationLibrary_dyp2m")
 autoplay = &"idle"
 
-[node name="DemageEmitter" parent="." index="4" unique_id=1169438908 instance=ExtResource("3_76oj4")]
+[node name="DemageEmitter" parent="." index="4" unique_id=1169438908]
 position = Vector2(0, -12)
 collision_mask = 96
 
@@ -286,4 +291,26 @@ position = Vector2(10, 0)
 shape = SubResource("RectangleShape2D_76oj4")
 debug_color = Color(0.82945144, 0.3818674, 0.22446257, 0.41960785)
 
+[node name="DemageReceiver" parent="." index="5" unique_id=2120513279]
+collision_layer = 16
+
+[node name="CollisionShape2D" parent="DemageReceiver" index="0" unique_id=375474339]
+position = Vector2(0, -19)
+shape = SubResource("RectangleShape2D_dyp2m")
+
+[node name="EnemySlots" type="Node2D" parent="." index="6" unique_id=969977225]
+
+[node name="EnemySlot" parent="EnemySlots" index="0" unique_id=1940541274 instance=ExtResource("4_dyp2m")]
+position = Vector2(18, -3)
+
+[node name="EnemySlot2" parent="EnemySlots" index="1" unique_id=922794846 instance=ExtResource("4_dyp2m")]
+position = Vector2(18, 3)
+
+[node name="EnemySlot3" parent="EnemySlots" index="2" unique_id=905617511 instance=ExtResource("4_dyp2m")]
+position = Vector2(-18, 3)
+
+[node name="EnemySlot4" parent="EnemySlots" index="3" unique_id=1844792114 instance=ExtResource("4_dyp2m")]
+position = Vector2(-18, -3)
+
 [editable path="DemageEmitter"]
+[editable path="DemageReceiver"]

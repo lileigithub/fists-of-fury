@@ -1,0 +1,137 @@
+[gd_scene format=3 uid="uid://b4cgschas6fcb"]
+
+[ext_resource type="PackedScene" uid="uid://cxsrlaqrmkapp" path="res://scenes/characters/character.tscn" id="1_y5dvh"]
+[ext_resource type="Script" uid="uid://b1ivrju1v4yli" path="res://scenes/characters/basic_enemy.gd" id="2_xsmbu"]
+[ext_resource type="Texture2D" uid="uid://dcldheiy6r7j2" path="res://assets/art/characters/enemy_punk.png" id="3_dwul0"]
+
+[sub_resource type="Animation" id="Animation_dwul0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_6fn6m"]
+resource_name = "hurt"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [40, 41, 42]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"on_action_completed"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_wh1i7"]
+resource_name = "idle"
+length = 0.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_kcdp1"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [10, 11, 12, 13, 14, 15, 16, 17]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kcdp1"]
+_data = {
+&"RESET": SubResource("Animation_dwul0"),
+&"hurt": SubResource("Animation_6fn6m"),
+&"idle": SubResource("Animation_wh1i7"),
+&"walk": SubResource("Animation_kcdp1")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dwul0"]
+size = Vector2(10, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wh1i7"]
+size = Vector2(8, 12)
+
+[node name="BasicEnemy" unique_id=362669986 instance=ExtResource("1_y5dvh")]
+collision_layer = 4
+collision_mask = 13
+script = ExtResource("2_xsmbu")
+demage = 4
+max_health = 20
+speed = 15.0
+knockback_intensity = 50.0
+
+[node name="CharacterSprite2D" parent="." index="1" unique_id=76797558]
+texture = ExtResource("3_dwul0")
+centered = false
+offset = Vector2(-24, -48)
+hframes = 10
+vframes = 10
+
+[node name="AnimationPlayer" parent="." index="3" unique_id=873326985]
+libraries/ = SubResource("AnimationLibrary_kcdp1")
+
+[node name="DemageEmitter" parent="." index="4" unique_id=1169438908]
+collision_mask = 80
+
+[node name="CollisionShape2D" parent="DemageEmitter" index="0" unique_id=1344649673]
+position = Vector2(9, -12)
+shape = SubResource("RectangleShape2D_dwul0")
+
+[node name="DemageReceiver" parent="." index="5" unique_id=2120513279]
+collision_layer = 32
+
+[node name="CollisionShape2D" parent="DemageReceiver" index="0" unique_id=375474339]
+position = Vector2(0, -19)
+shape = SubResource("RectangleShape2D_wh1i7")
+
+[editable path="DemageEmitter"]
+[editable path="DemageReceiver"]

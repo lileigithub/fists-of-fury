@@ -19,6 +19,42 @@ tracks/0/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_7mf7s"]
+resource_name = "fall"
+length = 0.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [51]
+}
+
+[sub_resource type="Animation" id="Animation_wpldu"]
+resource_name = "grounded"
+length = 0.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [52]
+}
+
 [sub_resource type="Animation" id="Animation_6fn6m"]
 resource_name = "hurt"
 length = 0.3
@@ -68,6 +104,37 @@ tracks/0/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_enhbp"]
+resource_name = "land"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [70]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"on_land_complete"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_kcdp1"]
 resource_name = "walk"
 length = 0.8
@@ -89,8 +156,11 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kcdp1"]
 _data = {
 &"RESET": SubResource("Animation_dwul0"),
+&"fall": SubResource("Animation_7mf7s"),
+&"grounded": SubResource("Animation_wpldu"),
 &"hurt": SubResource("Animation_6fn6m"),
 &"idle": SubResource("Animation_wh1i7"),
+&"land": SubResource("Animation_enhbp"),
 &"walk": SubResource("Animation_kcdp1")
 }
 
@@ -98,7 +168,7 @@ _data = {
 size = Vector2(10, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wh1i7"]
-size = Vector2(8, 12)
+size = Vector2(8, 10)
 
 [node name="BasicEnemy" unique_id=362669986 instance=ExtResource("1_y5dvh")]
 collision_layer = 4
@@ -107,6 +177,8 @@ script = ExtResource("2_xsmbu")
 max_health = 20
 speed = 15.0
 knockback_intensity = 50.0
+knockdown_intensity = 70.0
+duration_ground_ms = 1000.0
 
 [node name="CharacterSprite2D" parent="." index="1" unique_id=76797558]
 texture = ExtResource("3_dwul0")

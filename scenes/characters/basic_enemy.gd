@@ -16,10 +16,14 @@ func handle_evnet():
 			else:
 				velocity = direction * speed
 
-func on_receive_damage(amount : int, direction:Vector2):
-	super.on_receive_damage(amount, direction)
+func on_receive_damage(amount : int, direction:Vector2, hit_type:DamageReceiver.HitType):
+	super.on_receive_damage(amount, direction, hit_type)
 	if current_health <= 0:
 		if slot != null:
 			slot.free_up(self)
 			slot = null
+			
+func on_action_completed():
+	current_state = State.IDLE
+	velocity = Vector2.ZERO
 		

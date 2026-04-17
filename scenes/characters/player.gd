@@ -7,6 +7,7 @@ func handle_evnet():
 	velocity = direction * speed * speed_scale
 	if Input.is_action_just_pressed("attack") && can_attack():
 		current_state = State.ATTACK
+		combo_index = (combo_index + 1) % attak_animations.size()
 	if Input.is_action_just_pressed("jump") && can_jump():
 		current_state = State.TAKEOFF
 	if can_jumpkick() && Input.is_action_just_pressed("attack"):

@@ -20,7 +20,7 @@ func _process(delta:float):
 	position += velocity * delta
 	handle_air_time(delta)
 
-func on_receive_damage(_damage : int, direction:Vector2):
+func on_receive_damage(_damage : int, direction:Vector2, _hit_type):
 	if state == State.IDLE:
 		velocity = direction * knockback_intensity
 		height_speed = knockback_intensity * 2

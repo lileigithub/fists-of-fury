@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://dch66uy0xdey4" path="res://scenes/characters/player.tscn" id="2_vl1uy"]
 [ext_resource type="PackedScene" uid="uid://dcu81nh686g4v" path="res://scenes/props/barrel.tscn" id="4_1amgx"]
 [ext_resource type="PackedScene" uid="uid://b4cgschas6fcb" path="res://scenes/characters/basic_enemy.tscn" id="5_2isbp"]
+[ext_resource type="PackedScene" uid="uid://cs87niipeulrb" path="res://scenes/props/knife.tscn" id="6_rv581"]
+[ext_resource type="PackedScene" uid="uid://bsxgkwnrojump" path="res://scenes/characters/goon_enemy.tscn" id="7_qlfdg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5kvxf"]
 size = Vector2(6, 64)
@@ -50,3 +52,10 @@ position = Vector2(60, 52)
 [node name="BasicEnemy" parent="ActorsContainer" unique_id=1887302505 node_paths=PackedStringArray("player") instance=ExtResource("5_2isbp")]
 position = Vector2(13, 59)
 player = NodePath("../Player")
+
+[node name="GoonEnemy" parent="ActorsContainer" unique_id=1553863798 node_paths=PackedStringArray("player") instance=ExtResource("7_qlfdg")]
+position = Vector2(80, 57)
+player = NodePath("../Player")
+
+[node name="Knife" parent="ActorsContainer" unique_id=840734354 instance=ExtResource("6_rv581")]
+position = Vector2(49, 53)

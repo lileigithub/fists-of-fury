@@ -13,12 +13,15 @@ func handle_evnet():
 		if has_knife:
 			current_state = State.THROW
 		else:
-			current_state = State.ATTACK
-			if last_attack_hited:
-				combo_index = (combo_index + 1) % attak_animations.size()
+			if can_pickup_colletible():
+				current_state = State.PICKUP
 			else:
-				combo_index = 0
-			last_attack_hited = false
+				current_state = State.ATTACK
+				if last_attack_hited:
+					combo_index = (combo_index + 1) % attak_animations.size()
+				else:
+					combo_index = 0
+				last_attack_hited = false
 	if Input.is_action_just_pressed("jump") && can_jump():
 		current_state = State.TAKEOFF
 	if can_jumpkick() && Input.is_action_just_pressed("attack"):

@@ -10,7 +10,6 @@ const EDGE_SCREEN_BUGGER:int = 10
 
 var last_melle_attack_time:int = Time.get_ticks_msec()
 var last_prd_melle_attack_time:int = Time.get_ticks_msec()
-var last_range_attack_time:int = Time.get_ticks_msec()
 var last_prd_range_attack_time:int = Time.get_ticks_msec()
 
 var slot:EnemySlot = null
@@ -18,10 +17,11 @@ var slot:EnemySlot = null
 func _ready() -> void:
 	super._ready()
 	attak_animations = ["punch", "punch_alt"]
+	assert(player != null)
 
 func handle_evnet():
 	if player != null && can_move():
-		if can_respawn_knife:
+		if can_respawn_knife or has_knife:
 			goto_range_position()
 		else:
 			goto_melle_position()
@@ -38,12 +38,16 @@ func goto_range_position():
 	else:
 		velocity = dist.normalized() * speed
 	if can_throw():
-		last_range_attack_time = Time.get_ticks_msec()
 		current_state = State.THROW
 
 func goto_melle_position():
 	# 申请槽位
-	if slot == null:
+	if can_pickup_colletible():
+		current_state = State.PICKUP
+		if slot != null:
+			player.free_slot(self)
+	elif slot == null:
+	#if slot == null:
 		slot = player.reserve_slot(self)
 	if slot != null:
 		var dist = slot.global_position - global_position
@@ -84,5 +88,5 @@ func can_attack() -> bool:
 	return Time.get_ticks_msec() - last_melle_attack_time > duration_melle_attacks_ms and super.can_attack()
 	
 func can_throw() -> bool:
-	return has_knife and  Time.get_ticks_msec() - last_range_attack_time > duration_range_attacks_ms \
+	return has_knife and  Time.get_ticks_msec() - last_miss_knife_time > duration_range_attacks_ms \
 	and projectile_aim.is_colliding() and super.can_attack() 

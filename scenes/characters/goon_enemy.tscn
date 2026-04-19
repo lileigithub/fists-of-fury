@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bsxgkwnrojump"]
+
+[ext_resource type="PackedScene" uid="uid://b4cgschas6fcb" path="res://scenes/characters/basic_enemy.tscn" id="1_55rrx"]
+[ext_resource type="Texture2D" uid="uid://cjlullb74g6ng" path="res://assets/art/characters/enemy_goon.png" id="2_jdxqa"]
+
+[node name="GoonEnemy" unique_id=362669986 instance=ExtResource("1_55rrx")]
+max_health = 50
+speed = 20.0
+fly_intensity = 120.0
+duration_ground_ms = 700.0
+has_knife = true
+can_respawn_knife = true
+duration_respawn_knife_ms = 1000
+
+[node name="CharacterSprite2D" parent="." index="1" unique_id=76797558]
+texture = ExtResource("2_jdxqa")
+
+[editable path="DamageEmitter"]
+[editable path="DamageReceiver"]
+[editable path="CollateralDemageEmitter"]

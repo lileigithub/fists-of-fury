@@ -10,6 +10,7 @@ const GRAVITY = 600.0
 @onready var collision_shape :CollisionShape2D = $CollisionShape2D
 @onready var knife_sprite:Sprite2D = $KnifeSprite
 @onready var projectile_aim:RayCast2D = $ProjectileAim
+@onready var collectible_senser : Area2D = $ColletibleSenser
 
 @export var damage:int
 @export var power_damage:int
@@ -28,7 +29,7 @@ const GRAVITY = 600.0
 @export var can_respawn_knife:= false
 @export var duration_respawn_knife_ms:int = 2000
 
-enum State {IDLE, WALK, ATTACK, TAKEOFF, JUMP, LAND, JUMPKICK, HURT, FALL, GROUNDED, DEATH, FLY, PRE_HIT, THROW}
+enum State {IDLE, WALK, ATTACK, TAKEOFF, JUMP, LAND, JUMPKICK, HURT, FALL, GROUNDED, DEATH, FLY, PRE_HIT, THROW, PICKUP}
 var attak_animations : Array
 var anim_map := {
 	State.IDLE: "idle",
@@ -43,7 +44,8 @@ var anim_map := {
 	State.DEATH: "grounded",
 	State.FLY: "fly",
 	State.PRE_HIT: "idle",
-	State.THROW:"throw"
+	State.THROW:"throw",
+	State.PICKUP:"pickup"
 }
 var current_state := State.IDLE
 var height = 0.0
@@ -160,6 +162,8 @@ func on_emit_damage(receiver : DamageReceiver):
 	
 func on_receive_damage(amount : int, direction:Vector2, hit_type: DamageReceiver.HitType):
 	if can_get_hurt():
+		if can_respawn_knife:
+			can_respawn_knife = false
 		if has_knife:
 			has_knife = false
 		current_health = clamp(current_health - amount, 0, max_health)
@@ -198,6 +202,29 @@ func on_emit_collateral_damge(receiver : DamageReceiver):
 	if receiver != damage_receiver:
 		var direction = Vector2.LEFT if receiver.global_position.x < global_position.x else Vector2.RIGHT
 		receiver.damage_received.emit(0, direction, DamageReceiver.HitType.POWER)
+
+func on_pickup_complete():
+	current_state = State.IDLE
+	# 拾取物品
+	pickup_colletible()
+	pass
+
+func pickup_colletible():
+	if can_pickup_colletible():
+		var collectible_areas := collectible_senser.get_overlapping_areas()
+		var collectible : Collectible = collectible_areas[0]
+		if collectible.type == Collectible.Type.KNIFE and not has_knife:
+			has_knife = true
+			collectible.queue_free()
+
+func can_pickup_colletible() -> bool:
+	var collectible_areas := collectible_senser.get_overlapping_areas()
+	if collectible_areas.size() == 0:
+		return false
+	var collectible : Collectible = collectible_areas[0]
+	if collectible.type == Collectible.Type.KNIFE and not has_knife:
+		return true
+	return false
 
 func can_get_hurt() -> bool:
 	return [State.IDLE, State.WALK, State.TAKEOFF, State.LAND].has(current_state)

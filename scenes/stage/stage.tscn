@@ -34,8 +34,9 @@ collision_mask = 0
 position = Vector2(202, 0)
 shape = SubResource("RectangleShape2D_ecxui")
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="Node" unique_id=1429837759]
+[node name="StaticBody2D3" type="AnimatableBody2D" parent="Node" unique_id=1514094689]
 position = Vector2(84, 51)
+collision_layer = 128
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node/StaticBody2D3" unique_id=85728902]

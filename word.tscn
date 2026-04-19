@@ -20,17 +20,19 @@ position = Vector2(50, 32)
 [node name="invisibleWalls" type="Node2D" parent="Camera" unique_id=2007822293]
 position = Vector2(-50, -32)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Camera/invisibleWalls" unique_id=104566246]
+[node name="StaticBody2D" type="AnimatableBody2D" parent="Camera/invisibleWalls" unique_id=140946275]
 collision_layer = 128
 collision_mask = 0
+sync_to_physics = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera/invisibleWalls/StaticBody2D" unique_id=774640483]
 position = Vector2(-3, 32)
 shape = SubResource("RectangleShape2D_5kvxf")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="Camera/invisibleWalls" unique_id=461509918]
+[node name="StaticBody2D2" type="AnimatableBody2D" parent="Camera/invisibleWalls" unique_id=2035590991]
 collision_layer = 128
 collision_mask = 0
+sync_to_physics = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera/invisibleWalls/StaticBody2D2" unique_id=58132512]
 position = Vector2(103, 32)
@@ -47,20 +49,4 @@ position = Vector2(60, 52)
 
 [node name="BasicEnemy" parent="ActorsContainer" unique_id=1887302505 node_paths=PackedStringArray("player") instance=ExtResource("5_2isbp")]
 position = Vector2(13, 59)
-player = NodePath("../Player")
-
-[node name="BasicEnemy2" parent="ActorsContainer" unique_id=176708165 node_paths=PackedStringArray("player") instance=ExtResource("5_2isbp")]
-position = Vector2(51, 60)
-player = NodePath("../Player")
-
-[node name="BasicEnemy3" parent="ActorsContainer" unique_id=2055059036 node_paths=PackedStringArray("player") instance=ExtResource("5_2isbp")]
-position = Vector2(69, 36)
-player = NodePath("../Player")
-
-[node name="BasicEnemy4" parent="ActorsContainer" unique_id=657258683 node_paths=PackedStringArray("player") instance=ExtResource("5_2isbp")]
-position = Vector2(13, 36)
-player = NodePath("../Player")
-
-[node name="BasicEnemy5" parent="ActorsContainer" unique_id=1828111343 node_paths=PackedStringArray("player") instance=ExtResource("5_2isbp")]
-position = Vector2(94, 60)
 player = NodePath("../Player")

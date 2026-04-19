@@ -34,5 +34,12 @@ shape = SubResource("CapsuleShape2D_1bdar")
 
 [node name="DamageReceiver" parent="." unique_id=2120513279 instance=ExtResource("4_2qjml")]
 
+[node name="CollateralDemageEmitter" parent="." unique_id=1262236731 instance=ExtResource("3_e22cc")]
+
+[node name="KnifeSprite" type="Sprite2D" parent="." unique_id=1445367122]
+
+[node name="ProjectileAim" type="RayCast2D" parent="." unique_id=660063726]
+
 [editable path="DamageEmitter"]
 [editable path="DamageReceiver"]
+[editable path="CollateralDemageEmitter"]

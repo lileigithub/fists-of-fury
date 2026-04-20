@@ -14,6 +14,15 @@ var last_prd_range_attack_time:int = Time.get_ticks_msec()
 
 var slot:EnemySlot = null
 
+#给新开发者的建议：
+#第一步。跟着类似的教程做。
+#第二步。想一个非常简单的游戏创意。
+#第三步。试着用你掌握的知识来做那个游戏。
+#第四步。当你不可避免地遇到一个你不知道该怎么添加的功能时，可以专门看那个功能相关的教程。
+#步骤5。做多个小项目，少做教程，开始更多依赖文档，直到你变得更独立。
+#第六步。你现在已经流利掌握游戏开发了。干得好！
+
+
 func _ready() -> void:
 	super._ready()
 	attak_animations = ["punch", "punch_alt"]

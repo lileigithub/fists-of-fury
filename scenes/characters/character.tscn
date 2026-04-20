@@ -38,6 +38,8 @@ shape = SubResource("CapsuleShape2D_1bdar")
 
 [node name="KnifeSprite" type="Sprite2D" parent="." unique_id=1445367122]
 
+[node name="WeapenPosition" type="Node2D" parent="KnifeSprite" unique_id=341559975]
+
 [node name="ProjectileAim" type="RayCast2D" parent="." unique_id=660063726]
 
 [node name="ColletibleSenser" type="Area2D" parent="." unique_id=97593532]

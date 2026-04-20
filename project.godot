@@ -15,6 +15,10 @@ run/main_scene="uid://cwaupxn38ko74"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+EntityManager="*uid://dvbnfwvj6b61g"
+
 [debug]
 
 gdscript/warnings/unused_signal=0

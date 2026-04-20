@@ -7,6 +7,7 @@ const GRAVITY := 600.0
 
 @export var knockdown_intensity : float = 150
 @export var type = Type.KNIFE
+@export var speed:= 100.0
 
 enum Type {KNIFE, GUN, FOOD}
 enum State {FALL, GROUNDED, FLY}
@@ -18,14 +19,19 @@ var anim_map := {
 var current_state := State.FALL
 var height:=0.0
 var height_speed:= 0.0
+var direction:=Vector2.ZERO
+var velocity:=Vector2.ZERO
 
 func _ready() -> void:
-	height_speed = knockdown_intensity 
-
+	height_speed = knockdown_intensity
+	if current_state == State.FLY:
+		velocity = direction * speed
 
 func _process(delta: float) -> void:
 	handle_fall(delta)
 	handle_animations()
+	collectible_sprite.flip_h = velocity.x < 0
+	position += velocity * delta
 	
 func handle_fall(delta: float):
 	if current_state == State.FALL:

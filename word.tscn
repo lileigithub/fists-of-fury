@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cg7twy1yrw537" path="res://scenes/stage/stage.tscn" id="1_3q3ku"]
 [ext_resource type="Script" uid="uid://bfpumhoub6wa6" path="res://scenes/word.gd" id="1_5kvxf"]
 [ext_resource type="PackedScene" uid="uid://dch66uy0xdey4" path="res://scenes/characters/player.tscn" id="2_vl1uy"]
+[ext_resource type="Script" uid="uid://c0maudi6xo0c5" path="res://scenes/stage/actors_container.gd" id="3_dlft6"]
 [ext_resource type="PackedScene" uid="uid://dcu81nh686g4v" path="res://scenes/props/barrel.tscn" id="4_1amgx"]
 [ext_resource type="PackedScene" uid="uid://b4cgschas6fcb" path="res://scenes/characters/basic_enemy.tscn" id="5_2isbp"]
 [ext_resource type="PackedScene" uid="uid://cs87niipeulrb" path="res://scenes/props/knife.tscn" id="6_rv581"]
@@ -42,6 +43,7 @@ shape = SubResource("RectangleShape2D_5kvxf")
 
 [node name="ActorsContainer" type="Node2D" parent="." unique_id=628296364]
 y_sort_enabled = true
+script = ExtResource("3_dlft6")
 
 [node name="Player" parent="ActorsContainer" unique_id=362669986 instance=ExtResource("2_vl1uy")]
 position = Vector2(34, 50)

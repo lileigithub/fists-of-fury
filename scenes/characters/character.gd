@@ -11,6 +11,7 @@ const GRAVITY = 600.0
 @onready var knife_sprite:Sprite2D = $KnifeSprite
 @onready var projectile_aim:RayCast2D = $ProjectileAim
 @onready var collectible_senser : Area2D = $ColletibleSenser
+@onready var weapen_position : Node2D = $KnifeSprite/WeapenPosition
 
 @export var damage:int
 @export var power_damage:int
@@ -197,6 +198,8 @@ func on_wall_hit(_wall : StaticBody2D):
 func on_throw_complete():
 	has_knife = false
 	current_state = State.IDLE
+	EntityManager.spawn_collectible.emit(Collectible.Type.KNIFE, Collectible.State.FLY, \
+	weapen_position.global_position, heading)
 
 func on_emit_collateral_damge(receiver : DamageReceiver):
 	if receiver != damage_receiver:
